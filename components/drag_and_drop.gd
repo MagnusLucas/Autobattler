@@ -21,9 +21,13 @@ func _process(_delta: float) -> void:
 	if dragging and target:
 		target.global_position = target.get_global_mouse_position() + offset
 
+# Doesn't require mouse over area2d
 func _input(event: InputEvent) -> void:
-	if dragging and event.is_action_pressed("cancel_drag"):
-		_cancel_dragging()
+	if dragging:
+		if event.is_action_released("select"):
+			_drop()
+		elif event.is_action("cancel_drag"):
+			_cancel_dragging()
 
 func _end_dragging() -> void:
 	dragging = false
@@ -33,7 +37,7 @@ func _end_dragging() -> void:
 
 func _cancel_dragging() -> void:
 	_end_dragging()
-	target.position = starting_position
+	target.global_position = starting_position
 	drag_canceled.emit(starting_position)
 
 func _start_dragging() -> void:
@@ -48,6 +52,7 @@ func _drop() -> void:
 	_end_dragging()
 	dropped.emit(starting_position)
 
+# Does require mouse over area2d
 func _on_target_input_event(_viewport: Node, event: InputEvent) -> void:
 	if not enabled or not target:
 		return
@@ -60,7 +65,4 @@ func _on_target_input_event(_viewport: Node, event: InputEvent) -> void:
 	
 	if event.is_action_pressed("select") and not dragging:
 		_start_dragging()
-	elif event.is_action_released("select") and dragging:
-		_drop()
-	elif event.is_action("cancel_drag") and dragging:
-		_cancel_dragging()
+	
