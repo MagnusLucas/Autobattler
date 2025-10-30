@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://ck174r8616p3u"]
+[gd_scene load_steps=13 format=3 uid="uid://ck174r8616p3u"]
 
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_fmv3f"]
 [ext_resource type="Script" uid="uid://by3vxnfsq0vnm" path="res://scenes/unit/unit.gd" id="1_fvc8g"]
 [ext_resource type="Resource" uid="uid://d262gf1vfa7rj" path="res://data/units/example_stats.tres" id="2_vh40f"]
+[ext_resource type="Material" uid="uid://bb8m5fhpi4wqn" path="res://assets/shaders/2d_outline_shader.tres" id="3_3po7s"]
 [ext_resource type="Script" uid="uid://be0ux5ueqvi80" path="res://components/drag_and_drop.gd" id="4_bhlit"]
+[ext_resource type="Script" uid="uid://c4qocx6sy1gks" path="res://components/velocity_based_rotation.gd" id="5_vgvef"]
+[ext_resource type="Script" uid="uid://b71bbd7lbqubs" path="res://components/outline_highlighter.gd" id="7_0wuuu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmv3f"]
 size = Vector2(36, 36)
@@ -33,8 +36,12 @@ border_color = Color(0.3227743, 0.049818628, 1.2032688e-08, 1)
 [node name="Unit" type="Area2D"]
 script = ExtResource("1_fvc8g")
 stats = ExtResource("2_vh40f")
+metadata/_edit_group_ = true
 
-[node name="Skin" type="Sprite2D" parent="."]
+[node name="Visuals" type="CanvasGroup" parent="."]
+material = ExtResource("3_3po7s")
+
+[node name="Skin" type="Sprite2D" parent="Visuals"]
 position = Vector2(16, 8)
 texture = ExtResource("1_fmv3f")
 region_enabled = true
@@ -53,6 +60,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_fmv3f")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fvc8g")
 value = 35.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="ManaBar" type="ProgressBar" parent="."]
 offset_left = 1.0
@@ -63,7 +71,28 @@ theme_override_styles/background = SubResource("StyleBoxFlat_vh40f")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bhlit")
 value = 60.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="DragAndDrop" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("4_bhlit")
 target = NodePath("..")
+
+[node name="VelocityBasedRotation" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_vgvef")
+target = NodePath("../Visuals/Skin")
+lerp_seconds = 1.0
+rotation_multiplier = 90
+x_velocity_threshold = 2.0
+metadata/_custom_type_script = "uid://c4qocx6sy1gks"
+
+[node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("7_0wuuu")
+visuals = NodePath("../Visuals")
+outline_colour = Color(1, 1, 1, 1)
+outline_thickness = 1
+metadata/_custom_type_script = "uid://b71bbd7lbqubs"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="drag_started" from="DragAndDrop" to="." method="_on_drag_started"]
+[connection signal="dropped" from="DragAndDrop" to="." method="_on_dropped" unbinds=1]
