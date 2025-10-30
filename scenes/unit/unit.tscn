@@ -80,7 +80,8 @@ target = NodePath("..")
 [node name="VelocityBasedRotation" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_vgvef")
 target = NodePath("../Visuals/Skin")
-lerp_seconds = 1.5
+max_rotation_degrees = 70
+velocity_at_max_rotation = 800.0
 metadata/_custom_type_script = "uid://c4qocx6sy1gks"
 
 [node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("visuals")]
