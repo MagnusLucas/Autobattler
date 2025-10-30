@@ -12,6 +12,7 @@ extends Area2D
 @onready var velocity_based_rotation: VelocityBasedRotation = $VelocityBasedRotation
 @onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
 
+
 func set_stats(value: UnitStats) -> void:
 	stats = value
 	
@@ -23,6 +24,10 @@ func set_stats(value: UnitStats) -> void:
 	
 	skin.region_rect.position = Vector2(stats.skin_coordinates) * Arena.CELL_SIZE
 
+
+func reset_after_dragging(starting_position: Vector2) -> void:
+	velocity_based_rotation.enabled = false
+	global_position = starting_position
 
 func _on_mouse_entered() -> void:
 	if get_tree().get_first_node_in_group("dragging"):
@@ -39,6 +44,8 @@ func _on_mouse_exited() -> void:
 
 func _on_drag_started() -> void:
 	outline_highlighter.clear_highlight()
+	velocity_based_rotation.enabled = true
 
-func _on_dropped() -> void:
-	outline_highlighter.highlight()
+
+func _on_drag_canceled(starting_position: Vector2) -> void:
+	reset_after_dragging(starting_position)

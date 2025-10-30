@@ -84,8 +84,9 @@ max_rotation_degrees = 70
 velocity_at_max_rotation = 800.0
 metadata/_custom_type_script = "uid://c4qocx6sy1gks"
 
-[node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+[node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("area", "visuals")]
 script = ExtResource("7_0wuuu")
+area = NodePath("..")
 visuals = NodePath("../Visuals")
 outline_colour = Color(1, 1, 1, 1)
 outline_thickness = 1
@@ -93,5 +94,5 @@ metadata/_custom_type_script = "uid://b71bbd7lbqubs"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="drag_canceled" from="DragAndDrop" to="." method="_on_drag_canceled"]
 [connection signal="drag_started" from="DragAndDrop" to="." method="_on_drag_started"]
-[connection signal="dropped" from="DragAndDrop" to="." method="_on_dropped" unbinds=1]
