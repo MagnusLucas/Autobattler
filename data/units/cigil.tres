@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://ccv0elnc0ns4q"]
+
+[ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_yaidc"]
+
+[resource]
+script = ExtResource("1_yaidc")
+name = "Cigil"
+rarity = 2
+cost = 3
+skin_coordinates = Vector2i(4, 1)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"

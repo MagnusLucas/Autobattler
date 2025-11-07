@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://c24y8ypfrbqwp"]
+[gd_scene load_steps=15 format=4 uid="uid://c24y8ypfrbqwp"]
 
 [ext_resource type="TileSet" uid="uid://cmrosufv4r0kx" path="res://scenes/arena/tileset.tres" id="1_1qjuf"]
 [ext_resource type="Script" uid="uid://bkkrsmssvidqb" path="res://scenes/arena/arena.gd" id="1_5tue2"]
@@ -7,8 +7,10 @@
 [ext_resource type="Script" uid="uid://gv28uix4uroc" path="res://components/unit_grid.gd" id="4_asdgj"]
 [ext_resource type="Script" uid="uid://cqmocfnn8w674" path="res://components/play_area.gd" id="4_jx0ua"]
 [ext_resource type="Script" uid="uid://borktudwihcfo" path="res://components/tile_highlighter.gd" id="5_u52cf"]
-[ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="8_6w4xk"]
+[ext_resource type="Resource" uid="uid://brqc13fimo50j" path="res://data/units/bjorn.tres" id="8_2ml6w"]
 [ext_resource type="Script" uid="uid://cg07bdaai08mp" path="res://components/unit_mover.gd" id="8_ii07k"]
+[ext_resource type="Resource" uid="uid://ccv0elnc0ns4q" path="res://data/units/cigil.tres" id="9_xgbxb"]
+[ext_resource type="Script" uid="uid://bmsmmiukuuuh3" path="res://components/unit_spawner.gd" id="11_xgbxb"]
 
 [sub_resource type="Curve" id="Curve_5tue2"]
 _data = [Vector2(0.06842105, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.8789474, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -31,12 +33,6 @@ scale_min = 0.099999994
 scale_max = 0.19999999
 scale_curve = SubResource("CurveTexture_aj7ud")
 color = Color(1, 1, 1, 0.44313726)
-
-[sub_resource type="Resource" id="Resource_2ml6w"]
-script = ExtResource("8_6w4xk")
-name = "My"
-skin_coordinates = Vector2i(2, 4)
-metadata/_custom_type_script = "uid://cmb38jix5tc65"
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_5tue2")
@@ -112,10 +108,14 @@ play_area = NodePath("..")
 tile = Vector2i(3, 0)
 
 [node name="Unit" parent="Bench" instance=ExtResource("4_aj7ud")]
-stats = SubResource("Resource_2ml6w")
 
 [node name="Unit2" parent="Bench" instance=ExtResource("4_aj7ud")]
 position = Vector2(32, 0)
+stats = ExtResource("8_2ml6w")
+
+[node name="Unit3" parent="Bench" instance=ExtResource("4_aj7ud")]
+position = Vector2(64, 0)
+stats = ExtResource("9_xgbxb")
 
 [node name="UnitGrid" type="Node2D" parent="Bench"]
 script = ExtResource("4_asdgj")
@@ -126,3 +126,9 @@ metadata/_custom_type_script = "uid://gv28uix4uroc"
 script = ExtResource("8_ii07k")
 play_areas = [NodePath("../GameArea"), NodePath("../Bench")]
 metadata/_custom_type_script = "uid://cg07bdaai08mp"
+
+[node name="UnitSpawner" type="Node" parent="." node_paths=PackedStringArray("bench", "game_area")]
+script = ExtResource("11_xgbxb")
+bench = NodePath("../Bench")
+game_area = NodePath("../GameArea")
+metadata/_custom_type_script = "uid://bmsmmiukuuuh3"

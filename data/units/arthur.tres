@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://d262gf1vfa7rj"]
 
-[ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_hlxm7"]
+[ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_b6a51"]
 
 [resource]
-script = ExtResource("1_hlxm7")
-name = "Guy"
+script = ExtResource("1_b6a51")
+name = "Arthur"
 skin_coordinates = Vector2i(4, 0)
 metadata/_custom_type_script = "uid://cmb38jix5tc65"
