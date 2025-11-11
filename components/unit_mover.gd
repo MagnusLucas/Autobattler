@@ -37,7 +37,7 @@ func _on_unit_drag_started(unit: Unit) -> void:
 	_set_highlighters(true)
 	var play_area: PlayArea = _get_play_area_from_position(unit.global_position)
 	if play_area:
-		var tile := play_area.get_hovered_tile()
+		var tile := play_area.get_tile_from_global(unit.global_position)
 		play_area.unit_grid.remove_unit(tile)
 
 
