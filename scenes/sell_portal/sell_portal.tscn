@@ -29,9 +29,8 @@ region_rect = Rect2(224, 512, 32, 32)
 position = Vector2(16, 16)
 shape = SubResource("CircleShape2D_x6vx3")
 
-[node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("area", "visuals")]
+[node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("visuals")]
 script = ExtResource("3_g4w48")
-area = NodePath("..")
 visuals = NodePath("../Visuals")
 outline_colour = Color(0, 0.6666667, 0, 1)
 outline_thickness = 2

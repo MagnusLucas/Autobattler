@@ -22,7 +22,6 @@ func setup_unit(unit: Unit) -> void:
 
 
 func _on_unit_dropped(_starting_position: Vector2, unit: Unit) -> void:
-	gold.hide()
 	if unit and unit == current_unit:
 		_sell_unit(unit)
 
@@ -35,15 +34,18 @@ func _sell_unit(unit: Unit) -> void:
 	print(player_stats.gold)
 
 
-func _on_area_entered(unit: Unit) -> void:	
+func _on_area_entered(unit: Unit) -> void:
 	current_unit = unit
 	outline_highlighter.highlight()
 	gold_label.text = str(unit.stats.get_gold_value())
+	gold.show()
 
 
 func _on_area_exited(unit: Unit) -> void:
 	if unit and unit == current_unit:
 		current_unit = null
 	
+	print("clearing...")
 	outline_highlighter.clear_highlight()
+	print("cleared!")
 	gold.hide()
