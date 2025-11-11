@@ -18,6 +18,13 @@ signal quicksell_pressed
 var is_hovered := false
 
 
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		drag_and_drop.drag_started.connect(_on_drag_started)
+		drag_and_drop.drag_canceled.connect(_on_drag_canceled)
+		drag_and_drop.dropped.connect(_on_dropped.unbind(1))
+
+
 func set_stats(value: UnitStats) -> void:
 	stats = value
 	
@@ -61,4 +68,11 @@ func _on_drag_started() -> void:
 
 
 func _on_drag_canceled(starting_position: Vector2) -> void:
+	if is_hovered:
+		outline_highlighter.highlight()
 	reset_after_dragging(starting_position)
+
+
+func _on_dropped() -> void:
+	if is_hovered:
+		outline_highlighter.highlight()
