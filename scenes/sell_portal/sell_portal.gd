@@ -45,7 +45,5 @@ func _on_area_exited(unit: Unit) -> void:
 	if unit and unit == current_unit:
 		current_unit = null
 	
-	print("clearing...")
 	outline_highlighter.clear_highlight()
-	print("cleared!")
 	gold.hide()
