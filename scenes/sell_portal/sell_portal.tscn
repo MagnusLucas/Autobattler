@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckljbq0xijkfk"]
+
+[ext_resource type="Material" uid="uid://bb8m5fhpi4wqn" path="res://assets/shaders/2d_outline_shader.tres" id="1_q0l8s"]
+[ext_resource type="Script" uid="uid://d33vdoqhvl7ui" path="res://scenes/sell_portal/sell_portal.gd" id="1_q37ab"]
+[ext_resource type="Texture2D" uid="uid://b1ro1ssup7dcp" path="res://assets/sprites/tiles.png" id="2_x6vx3"]
+[ext_resource type="Script" uid="uid://b71bbd7lbqubs" path="res://components/outline_highlighter.gd" id="3_g4w48"]
+[ext_resource type="Texture2D" uid="uid://c4awhqfup7o2k" path="res://assets/sprites/gold.png" id="4_se251"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6vx3"]
+radius = 24.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4w48"]
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="SellPortal" type="Area2D"]
+script = ExtResource("1_q37ab")
+
+[node name="Visuals" type="CanvasGroup" parent="."]
+material = ExtResource("1_q0l8s")
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(16, 16)
+texture = ExtResource("2_x6vx3")
+region_enabled = true
+region_rect = Rect2(224, 512, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("CircleShape2D_x6vx3")
+
+[node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("area", "visuals")]
+script = ExtResource("3_g4w48")
+area = NodePath("..")
+visuals = NodePath("../Visuals")
+outline_colour = Color(0, 0.6666667, 0, 1)
+outline_thickness = 2
+metadata/_custom_type_script = "uid://b71bbd7lbqubs"
+
+[node name="Label" type="Label" parent="."]
+offset_top = 36.0
+offset_right = 40.0
+offset_bottom = 54.0
+text = "sell"
+label_settings = SubResource("LabelSettings_g4w48")
+horizontal_alignment = 1
+
+[node name="Gold" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_top = 50.0
+offset_right = 32.0
+offset_bottom = 68.0
+alignment = 1
+
+[node name="GoldLabel" type="Label" parent="Gold"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "99"
+label_settings = SubResource("LabelSettings_g4w48")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Gold"]
+custom_minimum_size = Vector2(9, 0)
+layout_mode = 2
+texture = ExtResource("4_se251")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
