@@ -17,12 +17,20 @@ func _ready() -> void:
 func add_unit(tile: Vector2i, unit: Unit) -> void:
 	units[tile] = unit
 	unit_grid_changed.emit()
+	unit.tree_exited.connect(_on_unit_tree_exited.bind(unit, tile))
+
+
+func _on_unit_tree_exited(unit: Unit, tile: Vector2i) -> void:
+	if unit.is_queued_for_deletion():
+		units[tile] = null
+		unit_grid_changed.emit()
 
 
 func remove_unit(tile: Vector2i) -> void:
 	if units[tile] == null:
 		return
 	
+	units[tile].tree_exited.disconnect(_on_unit_tree_exited)
 	units[tile] = null
 	unit_grid_changed.emit()
 
@@ -46,7 +54,7 @@ func get_first_empty_tile() -> Vector2i:
 
 func get_all_units() -> Array[Unit]:
 	var unit_array: Array[Unit] = []
-	for value in units.values():
+	for value: Unit in units.values():
 		if value != null:
 			unit_array.append(value)
 	
