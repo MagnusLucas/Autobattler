@@ -1,0 +1,121 @@
+[gd_scene load_steps=14 format=3 uid="uid://du5oqsei8s1l3"]
+
+[ext_resource type="PackedScene" uid="uid://c4f3gp2hxuouc" path="res://scenes/gold_display/gold_display.tscn" id="1_7lxhl"]
+[ext_resource type="Script" uid="uid://cubu6rm5xihym" path="res://scenes/shop/shop.gd" id="1_ge4d2"]
+[ext_resource type="PackedScene" uid="uid://d3b5sfh3cy58a" path="res://scenes/unit_card/unit_card.tscn" id="2_ctpgp"]
+[ext_resource type="PackedScene" uid="uid://cpw7l1qdshmcx" path="res://scenes/reroll_button/reroll_button.tscn" id="2_jp048"]
+[ext_resource type="Resource" uid="uid://bt5jvr3qkpeth" path="res://data/player/player_stats.tres" id="2_xcdpw"]
+[ext_resource type="PackedScene" uid="uid://bfje4ygqop74h" path="res://scenes/xp_tracker/xp_tracker.tscn" id="3_ctpgp"]
+[ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="3_ptf86"]
+[ext_resource type="PackedScene" uid="uid://cqvhb0n5e27er" path="res://scenes/xp_button/xp_button.tscn" id="4_ptf86"]
+
+[sub_resource type="Resource" id="Resource_ge4d2"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[sub_resource type="Resource" id="Resource_ptf86"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[sub_resource type="Resource" id="Resource_xcdpw"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[sub_resource type="Resource" id="Resource_tp26b"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[sub_resource type="Resource" id="Resource_vk20h"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[node name="Shop" type="VBoxContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = 9.0
+offset_right = -14.0
+offset_bottom = 348.0
+grow_horizontal = 0
+script = ExtResource("1_ge4d2")
+player_stats = ExtResource("2_xcdpw")
+
+[node name="Top" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="GoldDisplay" parent="Top" instance=ExtResource("1_7lxhl")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ShopCards" type="VBoxContainer" parent="Top"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="UnitCard" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
+layout_mode = 2
+size_flags_horizontal = 8
+unit_stats = SubResource("Resource_ge4d2")
+
+[node name="UnitCard2" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
+layout_mode = 2
+size_flags_horizontal = 8
+unit_stats = SubResource("Resource_ptf86")
+
+[node name="UnitCard3" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
+layout_mode = 2
+size_flags_horizontal = 8
+unit_stats = SubResource("Resource_xcdpw")
+
+[node name="UnitCard4" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
+layout_mode = 2
+size_flags_horizontal = 8
+unit_stats = SubResource("Resource_tp26b")
+
+[node name="UnitCard5" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
+layout_mode = 2
+size_flags_horizontal = 8
+unit_stats = SubResource("Resource_vk20h")
+
+[node name="Bottom" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="XpButton" parent="Bottom" instance=ExtResource("4_ptf86")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bottom"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="RerollButton" parent="Bottom/VBoxContainer" instance=ExtResource("2_jp048")]
+layout_mode = 2
+
+[node name="XpTracker" parent="Bottom/VBoxContainer" instance=ExtResource("3_ctpgp")]
+layout_mode = 2

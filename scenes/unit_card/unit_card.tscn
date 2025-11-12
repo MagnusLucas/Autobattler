@@ -1,0 +1,152 @@
+[gd_scene load_steps=12 format=3 uid="uid://d3b5sfh3cy58a"]
+
+[ext_resource type="Script" uid="uid://bfuqeti17eyw1" path="res://scenes/unit_card/unit_card.gd" id="1_2ee4v"]
+[ext_resource type="FontFile" uid="uid://8di0jvr25vat" path="res://assets/font/m5x7.ttf" id="1_efctb"]
+[ext_resource type="Texture2D" uid="uid://c4awhqfup7o2k" path="res://assets/sprites/gold.png" id="2_2ee4v"]
+[ext_resource type="Resource" uid="uid://bt5jvr3qkpeth" path="res://data/player/player_stats.tres" id="2_2yriv"]
+[ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="3_8ee35"]
+[ext_resource type="Resource" uid="uid://brqc13fimo50j" path="res://data/units/bjorn.tres" id="3_27mlq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2yriv"]
+line_spacing = 0.0
+font = ExtResource("1_efctb")
+font_color = Color(1, 1, 1, 0.64705884)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27mlq"]
+bg_color = Color(0.07940372, 0.37240806, 0.2401689, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2qy8"]
+resource_local_to_scene = true
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.078431375, 0.37254903, 0.23921569, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b8rp"]
+atlas = ExtResource("3_8ee35")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ee4v"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="UnitCard" type="Button"]
+custom_minimum_size = Vector2(80, 52)
+offset_right = 80.0
+offset_bottom = 52.0
+focus_mode = 0
+script = ExtResource("1_2ee4v")
+player_stats = ExtResource("2_2yriv")
+unit_stats = ExtResource("3_27mlq")
+
+[node name="BackDrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+color = Color(0, 0.20694011, 0.33387843, 1)
+
+[node name="Traits" type="Label" parent="BackDrop"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 33.0
+text = "viking
+fighter"
+label_settings = SubResource("LabelSettings_2yriv")
+
+[node name="Bottom" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_27mlq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Bottom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Bottom/MarginContainer"]
+layout_mode = 2
+
+[node name="UnitName" type="Label" parent="Bottom/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GoldContainer" type="HBoxContainer" parent="Bottom/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="GoldIcon" type="TextureRect" parent="Bottom/MarginContainer/HBoxContainer/GoldContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("2_2ee4v")
+stretch_mode = 5
+
+[node name="GoldCost" type="Label" parent="Bottom/MarginContainer/HBoxContainer/GoldContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+
+[node name="Border" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i2qy8")
+
+[node name="UnitIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 5.0
+offset_right = 37.0
+offset_bottom = 32.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4b8rp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EmptyPlaceholder" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ee4v")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
