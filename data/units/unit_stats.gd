@@ -17,6 +17,7 @@ const RARITY_COLORS = {
 @export var rarity: Rarity
 @export var cost := 1
 @export_range(1, 3) var tier := 1 : set = _set_tier
+@export_range(0, 36, 9) var pool_count := 9
 
 @export_category("Visuals")
 @export var skin_coordinates: Vector2i
