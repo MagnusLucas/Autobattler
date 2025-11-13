@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ck174r8616p3u"]
+[gd_scene load_steps=15 format=3 uid="uid://ck174r8616p3u"]
 
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_fmv3f"]
 [ext_resource type="Script" uid="uid://by3vxnfsq0vnm" path="res://scenes/unit/unit.gd" id="1_fvc8g"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c4qocx6sy1gks" path="res://components/velocity_based_rotation.gd" id="5_vgvef"]
 [ext_resource type="PackedScene" uid="uid://caw8vncdf2w4j" path="res://scenes/tier_icon/tier_icon.tscn" id="5_w7udy"]
 [ext_resource type="Script" uid="uid://b71bbd7lbqubs" path="res://components/outline_highlighter.gd" id="7_0wuuu"]
+[ext_resource type="Script" uid="uid://wvibafaobd3c" path="res://components/unit_animations.gd" id="9_vqlpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmv3f"]
 size = Vector2(36, 36)
@@ -95,6 +96,11 @@ visuals = NodePath("../Visuals")
 outline_colour = Color(1, 1, 1, 1)
 outline_thickness = 1
 metadata/_custom_type_script = "uid://b71bbd7lbqubs"
+
+[node name="UnitAnimations" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("9_vqlpx")
+unit = NodePath("..")
+metadata/_custom_type_script = "uid://wvibafaobd3c"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
