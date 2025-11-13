@@ -10,6 +10,7 @@ signal quicksell_pressed
 @onready var skin: Sprite2D = $Visuals/Skin
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var mana_bar: ProgressBar = $ManaBar
+@onready var tier_icon: TierIcon = $TierIcon
 
 @onready var drag_and_drop: DragAndDrop = $DragAndDrop
 @onready var velocity_based_rotation: VelocityBasedRotation = $VelocityBasedRotation
@@ -35,6 +36,7 @@ func set_stats(value: UnitStats) -> void:
 		await ready
 	
 	skin.region_rect.position = Vector2(stats.skin_coordinates) * Arena.CELL_SIZE
+	tier_icon.unit_stats = stats
 
 
 func reset_after_dragging(starting_position: Vector2) -> void:
