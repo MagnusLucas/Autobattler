@@ -29,7 +29,10 @@ func get_random_unit_by_rarity(rarity: UnitStats.Rarity) -> UnitStats:
 func add_unit(unit: UnitStats) -> void:
 	var combined_count := unit.get_combined_unit_count()
 	
-	#unit = unit.duplicate() # I'm not sure this is needed?
+	# This is not needed
+	# When generating the pool the units are already duplicated
+	# So here we add back a distinct unit
+	#unit = unit.duplicate()
 	unit.tier = 1
 	for i in combined_count:
 		unit_pool.append(unit)

@@ -15,6 +15,7 @@ signal quicksell_pressed
 @onready var drag_and_drop: DragAndDrop = $DragAndDrop
 @onready var velocity_based_rotation: VelocityBasedRotation = $VelocityBasedRotation
 @onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
+@onready var animations: UnitAnimations = $UnitAnimations
 
 var is_hovered := false
 
@@ -24,6 +25,8 @@ func _ready() -> void:
 		drag_and_drop.drag_started.connect(_on_drag_started)
 		drag_and_drop.drag_canceled.connect(_on_drag_canceled)
 		drag_and_drop.dropped.connect(_on_dropped.unbind(1))
+		animations.animation_started.connect(_on_animation_started)
+		outline_highlighter.got_enabled.connect(_on_outline_highlighter_enabled)
 
 
 func set_stats(value: UnitStats) -> void:
@@ -63,6 +66,16 @@ func _on_mouse_exited() -> void:
 	
 	is_hovered = false
 	outline_highlighter.clear_highlight()
+
+
+func _on_animation_started() -> void:
+	outline_highlighter.enabled = false
+
+
+func _on_outline_highlighter_enabled() -> void:
+	if is_hovered:
+		outline_highlighter.highlight()
+
 
 func _on_drag_started() -> void:
 	outline_highlighter.clear_highlight()

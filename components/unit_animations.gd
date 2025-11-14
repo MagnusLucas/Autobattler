@@ -1,6 +1,8 @@
 class_name UnitAnimations
 extends Node
 
+signal animation_started
+
 const COMBINE_ANIM_LENGTH := 0.6
 const COMBINE_ANIM_SCALE := Vector2(0.7, 0.7)
 const COMBINE_ANIM_ALPHA := 0.5
@@ -17,10 +19,4 @@ func play_combine_animation(target_position: Vector2) -> void:
 	tween.parallel().tween_property(unit, "scale", COMBINE_ANIM_SCALE, COMBINE_ANIM_LENGTH)
 	tween.parallel().tween_property(unit, "modulate:a", COMBINE_ANIM_ALPHA, COMBINE_ANIM_LENGTH)
 	tween.tween_callback(unit.queue_free)
-
-
-func _input(event: InputEvent) -> void:
-	if not event is InputEventMouseButton:
-		return
-	if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		play_combine_animation(get_viewport().get_mouse_position())
+	animation_started.emit()
