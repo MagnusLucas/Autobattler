@@ -15,6 +15,19 @@ const XP_REQUIREMENTS := {
 	10: 76,
 }
 
+const MAX_UNITS := {
+	1: 2,
+	2: 2,
+	3: 3,
+	4: 3,
+	5: 4,
+	6: 4,
+	7: 5,
+	8: 6,
+	9: 7,
+	10: 8,
+}
+
 const ROLL_RARITIES := {
 	1: [UnitStats.Rarity.COMMON],
 	2: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON],
@@ -63,9 +76,14 @@ func get_current_xp_requirement() -> int:
 	return XP_REQUIREMENTS[level+1]
 
 
+func get_current_max_units() -> int:
+	return MAX_UNITS[level]
+
+
 func _set_gold(value: int) -> void:
 	gold = value
 	emit_changed()
+
 
 func _set_xp(value: int) -> void:
 	xp = value
