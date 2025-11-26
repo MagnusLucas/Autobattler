@@ -23,6 +23,13 @@ static func get_unique_traits_for_units(units: Array[Unit]) -> Array[Trait]:
 	return traits
 
 
+static func get_trait_names(trait_list: Array[Trait]) -> PackedStringArray:
+	var trait_names: PackedStringArray = []
+	for current_trait in trait_list:
+		trait_names.append(current_trait.name)
+	return trait_names
+
+
 func get_unique_unit_count(units: Array[Unit]) -> int:
 	var units_with_trait := units.filter(
 		func(unit: Unit) -> bool:

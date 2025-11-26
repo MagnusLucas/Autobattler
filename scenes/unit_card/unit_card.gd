@@ -58,6 +58,7 @@ func _set_unit_stats(value: UnitStats) -> void:
 	traits.text = ""
 	unit_name.text = unit_stats.name
 	gold_cost.text = str(unit_stats.cost)
+	traits.text = "\n".join(Trait.get_trait_names(unit_stats.traits))
 	unit_icon.texture.region.position = Vector2(unit_stats.skin_coordinates) * Arena.CELL_SIZE
 
 
