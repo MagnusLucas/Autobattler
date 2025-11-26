@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://c24y8ypfrbqwp"]
+[gd_scene load_steps=22 format=4 uid="uid://c24y8ypfrbqwp"]
 
 [ext_resource type="TileSet" uid="uid://cmrosufv4r0kx" path="res://scenes/arena/tileset.tres" id="1_1qjuf"]
 [ext_resource type="Script" uid="uid://bkkrsmssvidqb" path="res://scenes/arena/arena.gd" id="1_5tue2"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://chtoiyjkta42b" path="res://data/unit_pool/unit_pool.tres" id="15_w4nra"]
 [ext_resource type="Script" uid="uid://cpqf6ti8iqst5" path="res://components/unit_combiner.gd" id="16_t3vx8"]
 [ext_resource type="PackedScene" uid="uid://cin6s6wgyj2rr" path="res://scenes/team_size_ui/team_size_ui.tscn" id="17_rhjlh"]
+[ext_resource type="PackedScene" uid="uid://c6tnsuhttfg5f" path="res://scenes/traits/traits.tscn" id="18_tp84n"]
 
 [sub_resource type="Curve" id="Curve_5tue2"]
 _data = [Vector2(0.06842105, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.8789474, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -167,3 +168,6 @@ offset_right = 23.0
 offset_bottom = 28.0
 grow_horizontal = 2
 arena_unit_grid = NodePath("../../GameArea/UnitGrid")
+
+[node name="Traits" parent="UI" node_paths=PackedStringArray("arena_grid") instance=ExtResource("18_tp84n")]
+arena_grid = NodePath("../../GameArea/UnitGrid")
