@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=5 format=3 uid="uid://dsovkotiu8k2n"]
+
+[ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_glcqg"]
+[ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="2_mv3mg"]
+[ext_resource type="Resource" uid="uid://ghfp3rwbv4d8" path="res://data/traits/elf.tres" id="3_4c2j2"]
+[ext_resource type="Resource" uid="uid://cp2jkaqn1v2v6" path="res://data/traits/human.tres" id="4_0bqoj"]
+
+[resource]
+script = ExtResource("1_glcqg")
+name = "Doof"
+pool_count = 18
+traits = Array[ExtResource("2_mv3mg")]([ExtResource("3_4c2j2"), ExtResource("4_0bqoj")])
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"

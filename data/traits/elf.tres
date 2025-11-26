@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Trait" load_steps=3 format=3 uid="uid://ghfp3rwbv4d8"]
+
+[ext_resource type="Texture2D" uid="uid://b1aup08or8bao" path="res://assets/sprites/traits/elf.png" id="1_lww0r"]
+[ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="1_qbkl1"]
+
+[resource]
+script = ExtResource("1_qbkl1")
+name = "Elf"
+icon = ExtResource("1_lww0r")
+levels = 3
+unit_requirements = Array[int]([2, 4, 6])
+metadata/_custom_type_script = "uid://bj36yk3m4758g"

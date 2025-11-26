@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=5 format=3 uid="uid://bjj71qj44jdf3"]
+
+[ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_uuoeq"]
+[ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="2_el23y"]
+[ext_resource type="Resource" uid="uid://ghfp3rwbv4d8" path="res://data/traits/elf.tres" id="3_vhnqp"]
+[ext_resource type="Resource" uid="uid://ddjkrgxsayl2r" path="res://data/traits/wizard.tres" id="4_8xk54"]
+
+[resource]
+script = ExtResource("1_uuoeq")
+name = "Fizzle"
+rarity = 1
+cost = 2
+traits = Array[ExtResource("2_el23y")]([ExtResource("3_vhnqp"), ExtResource("4_8xk54")])
+skin_coordinates = Vector2i(1, 4)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"

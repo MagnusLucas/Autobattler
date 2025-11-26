@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=5 format=3 uid="uid://ccb7tr22qhlsf"]
+
+[ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_y7tvk"]
+[ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="2_2lcww"]
+[ext_resource type="Resource" uid="uid://c0tqsvxc1a5nm" path="res://data/traits/viking.tres" id="3_x86vg"]
+[ext_resource type="Resource" uid="uid://dkjfj3kg7uuhu" path="res://data/traits/noble.tres" id="4_0fcg1"]
+
+[resource]
+script = ExtResource("1_y7tvk")
+name = "Earl"
+rarity = 2
+traits = Array[ExtResource("2_2lcww")]([ExtResource("3_x86vg"), ExtResource("4_0fcg1")])
+skin_coordinates = Vector2i(2, 3)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"

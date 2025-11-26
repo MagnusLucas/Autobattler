@@ -1,11 +1,18 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://brqc13fimo50j"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=6 format=3 uid="uid://brqc13fimo50j"]
 
 [ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_d6p4t"]
+[ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="2_f8bbe"]
+[ext_resource type="Resource" uid="uid://c0tqsvxc1a5nm" path="res://data/traits/viking.tres" id="2_shr7q"]
+[ext_resource type="Resource" uid="uid://cp2jkaqn1v2v6" path="res://data/traits/human.tres" id="3_f8bbe"]
+[ext_resource type="Resource" uid="uid://b0lplxoyyscm1" path="res://data/traits/fighter.tres" id="4_vqcxw"]
 
 [resource]
 script = ExtResource("1_d6p4t")
 name = "Bjorn"
 rarity = 1
 cost = 2
-skin_coordinates = Vector2i(1, 0)
+tier = null
+pool_count = null
+traits = Array[ExtResource("2_f8bbe")]([ExtResource("2_shr7q"), ExtResource("3_f8bbe"), ExtResource("4_vqcxw")])
+skin_coordinates = Vector2i(3, 3)
 metadata/_custom_type_script = "uid://cmb38jix5tc65"

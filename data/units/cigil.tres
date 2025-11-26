@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://ccv0elnc0ns4q"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=5 format=3 uid="uid://ccv0elnc0ns4q"]
 
 [ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_yaidc"]
+[ext_resource type="Resource" uid="uid://ghfp3rwbv4d8" path="res://data/traits/elf.tres" id="2_aeq4g"]
+[ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="2_sdqs1"]
+[ext_resource type="Resource" uid="uid://ddjkrgxsayl2r" path="res://data/traits/wizard.tres" id="3_sdqs1"]
 
 [resource]
 script = ExtResource("1_yaidc")
 name = "Cigil"
 rarity = 2
 cost = 3
-skin_coordinates = Vector2i(4, 1)
+tier = null
+pool_count = null
+traits = Array[ExtResource("2_sdqs1")]([ExtResource("2_aeq4g"), ExtResource("3_sdqs1")])
+skin_coordinates = Vector2i(0, 4)
 metadata/_custom_type_script = "uid://cmb38jix5tc65"
