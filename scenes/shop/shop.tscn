@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://du5oqsei8s1l3"]
+[gd_scene load_steps=17 format=3 uid="uid://du5oqsei8s1l3"]
 
 [ext_resource type="PackedScene" uid="uid://c4f3gp2hxuouc" path="res://scenes/gold_display/gold_display.tscn" id="1_7lxhl"]
 [ext_resource type="Script" uid="uid://cubu6rm5xihym" path="res://scenes/shop/shop.gd" id="1_ge4d2"]
@@ -9,44 +9,46 @@
 [ext_resource type="PackedScene" uid="uid://bfje4ygqop74h" path="res://scenes/xp_tracker/xp_tracker.tscn" id="3_ctpgp"]
 [ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="3_ptf86"]
 [ext_resource type="PackedScene" uid="uid://cqvhb0n5e27er" path="res://scenes/xp_button/xp_button.tscn" id="4_ptf86"]
-
-[sub_resource type="Resource" id="Resource_tp26b"]
-resource_local_to_scene = true
-script = ExtResource("3_ptf86")
-name = "Bjorn"
-rarity = 1
-cost = 2
-skin_coordinates = Vector2i(1, 0)
-metadata/_custom_type_script = "uid://cmb38jix5tc65"
-
-[sub_resource type="Resource" id="Resource_vk20h"]
-resource_local_to_scene = true
-script = ExtResource("3_ptf86")
-name = "Bjorn"
-rarity = 1
-cost = 2
-skin_coordinates = Vector2i(1, 0)
-metadata/_custom_type_script = "uid://cmb38jix5tc65"
-
-[sub_resource type="Resource" id="Resource_8qn5i"]
-resource_local_to_scene = true
-script = ExtResource("3_ptf86")
-name = "Bjorn"
-rarity = 1
-cost = 2
-skin_coordinates = Vector2i(1, 0)
-metadata/_custom_type_script = "uid://cmb38jix5tc65"
-
-[sub_resource type="Resource" id="Resource_dww4p"]
-resource_local_to_scene = true
-script = ExtResource("3_ptf86")
-name = "Bjorn"
-rarity = 1
-cost = 2
-skin_coordinates = Vector2i(1, 0)
-metadata/_custom_type_script = "uid://cmb38jix5tc65"
+[ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="7_8qn5i"]
+[ext_resource type="Script" uid="uid://7y5rlbikuu2c" path="res://components/scene_spawner.gd" id="11_dww4p"]
 
 [sub_resource type="Resource" id="Resource_g6lcs"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[sub_resource type="Resource" id="Resource_131kw"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[sub_resource type="Resource" id="Resource_xoc10"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[sub_resource type="Resource" id="Resource_k5co3"]
+resource_local_to_scene = true
+script = ExtResource("3_ptf86")
+name = "Bjorn"
+rarity = 1
+cost = 2
+skin_coordinates = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://cmb38jix5tc65"
+
+[sub_resource type="Resource" id="Resource_6kbe7"]
 resource_local_to_scene = true
 script = ExtResource("3_ptf86")
 name = "Bjorn"
@@ -83,27 +85,27 @@ size_flags_horizontal = 10
 [node name="UnitCard" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
 layout_mode = 2
 size_flags_horizontal = 8
-unit_stats = SubResource("Resource_tp26b")
+unit_stats = SubResource("Resource_g6lcs")
 
 [node name="UnitCard2" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
 layout_mode = 2
 size_flags_horizontal = 8
-unit_stats = SubResource("Resource_vk20h")
+unit_stats = SubResource("Resource_131kw")
 
 [node name="UnitCard3" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
 layout_mode = 2
 size_flags_horizontal = 8
-unit_stats = SubResource("Resource_8qn5i")
+unit_stats = SubResource("Resource_xoc10")
 
 [node name="UnitCard4" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
 layout_mode = 2
 size_flags_horizontal = 8
-unit_stats = SubResource("Resource_dww4p")
+unit_stats = SubResource("Resource_k5co3")
 
 [node name="UnitCard5" parent="Top/ShopCards" instance=ExtResource("2_ctpgp")]
 layout_mode = 2
 size_flags_horizontal = 8
-unit_stats = SubResource("Resource_g6lcs")
+unit_stats = SubResource("Resource_6kbe7")
 
 [node name="Bottom" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -121,5 +123,10 @@ layout_mode = 2
 
 [node name="XpTracker" parent="Bottom/VBoxContainer" instance=ExtResource("3_ctpgp")]
 layout_mode = 2
+
+[node name="SceneSpawner" type="Node" parent="."]
+script = ExtResource("11_dww4p")
+scene = ExtResource("2_ctpgp")
+metadata/_custom_type_script = "uid://7y5rlbikuu2c"
 
 [connection signal="pressed" from="Bottom/VBoxContainer/RerollButton" to="." method="_on_reroll_button_pressed"]

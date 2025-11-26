@@ -11,10 +11,11 @@ extends PanelContainer
 
 
 func _set_trait_data(value: Trait) -> void:
-	if not is_node_ready():
-		await ready
-	
 	trait_data = value
+	
+	if not is_node_ready() or trait_data == null:
+		return
+	
 	trait_icon.texture = trait_data.icon
 	trait_label.text = trait_data.name
 

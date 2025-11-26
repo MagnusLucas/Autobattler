@@ -1,9 +1,10 @@
 class_name Traits
 extends VBoxContainer
 
-const TRAIT_UI = preload("uid://cgij52f6b85kk")
 
 @export var arena_grid: UnitGrid
+
+@onready var scene_spawner: SceneSpawner = $SceneSpawner
 
 var current_traits: Dictionary[Trait, TraitUI] = {}
 var traits_to_update: Array[Trait] = []
@@ -13,8 +14,9 @@ var active_traits: Array[Trait] = []
 func _ready() -> void:
 	arena_grid.unit_grid_changed.connect(_update_traits)
 	
-	for trait_ui: TraitUI in get_children():
-		trait_ui.queue_free()
+	for child in get_children():
+		if child is TraitUI:
+			child.queue_free()
 
 
 func _update_traits() -> void:
@@ -43,8 +45,7 @@ func _update_trait_ui(trait_data: Trait, units: Array[Unit]) -> void:
 
 
 func _create_trait_ui(trait_data: Trait, units: Array[Unit]) -> void:
-	var trait_ui: TraitUI = TRAIT_UI.instantiate()
-	add_child(trait_ui)
+	var trait_ui: TraitUI = scene_spawner.spawn_scene()
 	trait_ui.trait_data = trait_data
 	trait_ui.update(units)
 	

@@ -44,8 +44,12 @@ func _on_player_stats_changed() -> void:
 func _set_unit_stats(value: UnitStats) -> void:
 	unit_stats = value
 	
+	# We set the unit stats after adding the unit card to the tree anyway
+	# So we can skip it when the node is not ready
+	# It only makes a difference while running this scene
+	# And lets us not use await ready
 	if not is_node_ready():
-		await ready
+		return
 	
 	if not unit_stats:
 		empty_placeholder.show()

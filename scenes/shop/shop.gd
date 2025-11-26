@@ -3,13 +3,13 @@ extends VBoxContainer
 
 signal unit_bought(unit: UnitStats)
 
-const UNIT_CARD = preload("uid://d3b5sfh3cy58a")
 const CARDS_IN_SHOP := 5
 
 @export var unit_pool: UnitPool
 @export var player_stats: PlayerStats
 
 @onready var shop_cards: VBoxContainer = %ShopCards
+@onready var scene_spawner: SceneSpawner = $SceneSpawner
 
 
 func _ready() -> void:
@@ -23,11 +23,10 @@ func _ready() -> void:
 
 func _roll_units() -> void:
 	for space in CARDS_IN_SHOP:
-		var card: UnitCard = UNIT_CARD.instantiate()
+		var card: UnitCard = scene_spawner.spawn_scene(shop_cards)
 		var rarity := player_stats.get_random_rarity_for_level()
 		card.unit_stats = unit_pool.get_random_unit_by_rarity(rarity)
 		card.unit_bought.connect(_on_unit_card_unit_bought)
-		shop_cards.add_child(card)
 
 
 func _on_reroll_button_pressed() -> void:

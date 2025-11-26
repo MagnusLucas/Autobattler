@@ -32,11 +32,8 @@ func _ready() -> void:
 func set_stats(value: UnitStats) -> void:
 	stats = value
 	
-	if value == null:
+	if not is_node_ready() or stats == null:
 		return
-	
-	if not is_node_ready():
-		await ready
 	
 	skin.region_rect.position = Vector2(stats.skin_coordinates) * Arena.CELL_SIZE
 	tier_icon.unit_stats = stats
