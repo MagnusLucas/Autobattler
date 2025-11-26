@@ -5,6 +5,7 @@ const CELL_SIZE := Vector2(32, 32)
 const HALF_CELL_SIZE := CELL_SIZE/2
 const QUARTER_CELL_SIZE := HALF_CELL_SIZE/2
 
+@export var music: AudioStream
 
 @onready var sell_portal: SellPortal = $SellPortal
 @onready var unit_spawner: UnitSpawner = $UnitSpawner
@@ -19,3 +20,4 @@ func _ready() -> void:
 	unit_spawner.unit_spawned.connect(sell_portal.setup_unit)
 	unit_spawner.unit_spawned.connect(unit_combiner.queue_unit_combination_update.unbind(1))
 	shop.unit_bought.connect(unit_spawner.spawn_unit)
+	MusicPlayer.play(music, true)

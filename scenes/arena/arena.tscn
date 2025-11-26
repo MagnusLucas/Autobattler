@@ -1,15 +1,13 @@
-[gd_scene load_steps=24 format=4 uid="uid://c24y8ypfrbqwp"]
+[gd_scene load_steps=22 format=4 uid="uid://c24y8ypfrbqwp"]
 
 [ext_resource type="TileSet" uid="uid://cmrosufv4r0kx" path="res://scenes/arena/tileset.tres" id="1_1qjuf"]
 [ext_resource type="Script" uid="uid://bkkrsmssvidqb" path="res://scenes/arena/arena.gd" id="1_5tue2"]
 [ext_resource type="Texture2D" uid="uid://mbxv0ayrsu3d" path="res://assets/sprites/star_particle.png" id="2_8trdl"]
-[ext_resource type="PackedScene" uid="uid://ck174r8616p3u" path="res://scenes/unit/unit.tscn" id="4_aj7ud"]
+[ext_resource type="AudioStream" uid="uid://dwse76yhsgxvm" path="res://assets/music/alexander_ehlers_twists.ogg" id="2_fir7s"]
 [ext_resource type="Script" uid="uid://gv28uix4uroc" path="res://components/unit_grid.gd" id="4_asdgj"]
 [ext_resource type="Script" uid="uid://cqmocfnn8w674" path="res://components/play_area.gd" id="4_jx0ua"]
 [ext_resource type="Script" uid="uid://borktudwihcfo" path="res://components/tile_highlighter.gd" id="5_u52cf"]
-[ext_resource type="Resource" uid="uid://brqc13fimo50j" path="res://data/units/bjorn.tres" id="8_2ml6w"]
 [ext_resource type="Script" uid="uid://cg07bdaai08mp" path="res://components/unit_mover.gd" id="8_ii07k"]
-[ext_resource type="Resource" uid="uid://ccv0elnc0ns4q" path="res://data/units/cigil.tres" id="9_xgbxb"]
 [ext_resource type="AudioStream" uid="uid://xgrsj3clmat0" path="res://assets/sfx/unit_place.ogg" id="11_wqbss"]
 [ext_resource type="Script" uid="uid://bmsmmiukuuuh3" path="res://components/unit_spawner.gd" id="11_xgbxb"]
 [ext_resource type="PackedScene" uid="uid://ckljbq0xijkfk" path="res://scenes/sell_portal/sell_portal.tscn" id="12_s83md"]
@@ -45,6 +43,7 @@ color = Color(1, 1, 1, 0.44313726)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_5tue2")
+music = ExtResource("2_fir7s")
 metadata/_edit_lock_ = true
 
 [node name="Visuals" type="Node2D" parent="."]
@@ -115,16 +114,6 @@ tile_set = ExtResource("1_1qjuf")
 script = ExtResource("5_u52cf")
 play_area = NodePath("..")
 tile = Vector2i(3, 0)
-
-[node name="Unit" parent="Bench" instance=ExtResource("4_aj7ud")]
-
-[node name="Unit2" parent="Bench" instance=ExtResource("4_aj7ud")]
-position = Vector2(32, 0)
-stats = ExtResource("8_2ml6w")
-
-[node name="Unit3" parent="Bench" instance=ExtResource("4_aj7ud")]
-position = Vector2(64, 0)
-stats = ExtResource("9_xgbxb")
 
 [node name="UnitGrid" type="Node2D" parent="Bench"]
 script = ExtResource("4_asdgj")
