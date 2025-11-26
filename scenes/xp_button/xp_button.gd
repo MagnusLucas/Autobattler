@@ -5,6 +5,7 @@ const XP_GAIN := 4
 const COST := 4
 
 @export var player_stats: PlayerStats
+@export var buy_sound: AudioStream
 
 @onready var v_box_container: VBoxContainer = %VBoxContainer
 
@@ -28,3 +29,4 @@ func _on_player_stats_changed() -> void:
 func _on_pressed() -> void:
 	player_stats.xp += XP_GAIN
 	player_stats.gold -= COST
+	SFXPlayer.play(buy_sound)

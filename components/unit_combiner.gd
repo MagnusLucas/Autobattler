@@ -3,6 +3,8 @@ extends Node
 
 
 @export var buffer_timer: Timer
+@export var combine_sound: AudioStream
+
 var queued_updates := 0
 var tween: Tween
 
@@ -40,6 +42,7 @@ func _combine_units(unit_0: Unit, unit_1: Unit, unit_2: Unit) -> void:
 			unit_0.global_position + Arena.QUARTER_CELL_SIZE)
 	unit_2.animations.play_combine_animation(
 			unit_0.global_position + Arena.QUARTER_CELL_SIZE)
+	SFXPlayer.play(combine_sound)
 
 
 func _on_units_combined(tier: int) -> void:
