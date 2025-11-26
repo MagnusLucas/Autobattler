@@ -7,7 +7,7 @@ signal quicksell_pressed
 
 @export var stats: UnitStats : set = set_stats
 
-@onready var skin: Sprite2D = $Visuals/Skin
+@onready var skin: PackedSprite2D = $Visuals/Skin
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var mana_bar: ProgressBar = $ManaBar
 @onready var tier_icon: TierIcon = $TierIcon
@@ -35,7 +35,7 @@ func set_stats(value: UnitStats) -> void:
 	if not is_node_ready() or stats == null:
 		return
 	
-	skin.region_rect.position = Vector2(stats.skin_coordinates) * Arena.CELL_SIZE
+	skin.coordinates = stats.skin_coordinates
 	tier_icon.unit_stats = stats
 
 
