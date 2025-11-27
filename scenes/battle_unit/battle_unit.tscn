@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bak8ahclwcng0"]
+[gd_scene load_steps=13 format=3 uid="uid://bak8ahclwcng0"]
 
+[ext_resource type="Script" uid="uid://dwfif6j3o3f3y" path="res://scenes/battle_unit/battle_unit.gd" id="1_rmpo8"]
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_tah2m"]
 [ext_resource type="Script" uid="uid://bhyxscii8bf6v" path="res://components/packed_sprite_2d.gd" id="2_rmpo8"]
 [ext_resource type="PackedScene" uid="uid://p1c87q01yygn" path="res://scenes/health_bar/health_bar.tscn" id="3_4s270"]
@@ -169,6 +170,8 @@ _data = {
 }
 
 [node name="BattleUnit" type="Area2D"]
+script = ExtResource("1_rmpo8")
+metadata/_edit_group_ = true
 
 [node name="Skin" type="Sprite2D" parent="."]
 texture = ExtResource("1_tah2m")
