@@ -5,13 +5,18 @@ signal unit_spawned(unit: Unit)
 
 @export var bench: PlayArea
 @export var game_area: PlayArea
+@export var game_state: GameState
 
 @onready var scene_spawner: SceneSpawner = $SceneSpawner
 
 func _get_first_aviable_area() -> PlayArea:
-	if not bench.unit_grid.is_grid_full():
+	var bench_full := bench.unit_grid.is_grid_full()
+	var game_area_full := game_area.unit_grid.is_grid_full()
+	var is_battling := game_state.current_phase == GameState.Phase.BATTLE
+	
+	if not bench_full:
 		return bench
-	elif not game_area.unit_grid.is_grid_full():
+	elif not game_area_full and not is_battling:
 		return game_area
 	return null
 
@@ -19,7 +24,8 @@ func _get_first_aviable_area() -> PlayArea:
 func spawn_unit(unit_stats: UnitStats) -> void:
 	var area := _get_first_aviable_area()
 	
-	assert(area, "No aviable space to spawn the unit to!")
+	# TODO: This should be showing a popup, not crashing the game
+	assert(area, "No available space to spawn the unit to!")
 	
 	var unit: Unit = scene_spawner.spawn_scene(area.unit_grid)
 	var tile: Vector2i = area.unit_grid.get_first_empty_tile()

@@ -3,6 +3,7 @@ extends Node
 
 @export var play_areas: Array[PlayArea] = []
 @export var place_sound: AudioStream
+@export var game_state: GameState
 
 func _ready() -> void:
 	var units := get_tree().get_nodes_in_group("units")
@@ -45,7 +46,12 @@ func _on_unit_drag_started(unit: Unit) -> void:
 func _on_unit_dropped(starting_position: Vector2, unit: Unit) -> void:
 	_set_highlighters(false)
 	var play_area: PlayArea = _get_play_area_from_position(unit.get_global_mouse_position())
-	if !play_area:
+	
+	var invalid_drop := play_area == null
+	var drop_on_bench := play_area.name == "Bench" if play_area else false
+	var is_battling := game_state.current_phase == GameState.Phase.BATTLE
+	
+	if invalid_drop or (is_battling and not drop_on_bench):
 		_reset_unit_to_starting_posiiton(starting_position, unit)
 		return
 	var tile := play_area.get_hovered_tile()

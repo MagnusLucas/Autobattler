@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://c24y8ypfrbqwp"]
+[gd_scene load_steps=25 format=4 uid="uid://c24y8ypfrbqwp"]
 
 [ext_resource type="TileSet" uid="uid://cmrosufv4r0kx" path="res://scenes/arena/tileset.tres" id="1_1qjuf"]
 [ext_resource type="Script" uid="uid://bkkrsmssvidqb" path="res://scenes/arena/arena.gd" id="1_5tue2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://borktudwihcfo" path="res://components/tile_highlighter.gd" id="5_u52cf"]
 [ext_resource type="Script" uid="uid://cg07bdaai08mp" path="res://custom_nodes/unit_mover.gd" id="8_ii07k"]
 [ext_resource type="Script" uid="uid://7y5rlbikuu2c" path="res://components/scene_spawner.gd" id="11_fir7s"]
+[ext_resource type="Resource" uid="uid://bk4vhb8ax4uj0" path="res://data/game_state/game_state.tres" id="11_gy0qm"]
 [ext_resource type="AudioStream" uid="uid://xgrsj3clmat0" path="res://assets/sfx/unit_place.ogg" id="11_wqbss"]
 [ext_resource type="Script" uid="uid://bmsmmiukuuuh3" path="res://custom_nodes/unit_spawner.gd" id="11_xgbxb"]
 [ext_resource type="PackedScene" uid="uid://ckljbq0xijkfk" path="res://scenes/sell_portal/sell_portal.tscn" id="12_s83md"]
@@ -126,12 +127,14 @@ metadata/_custom_type_script = "uid://gv28uix4uroc"
 script = ExtResource("8_ii07k")
 play_areas = [NodePath("../GameArea"), NodePath("../Bench")]
 place_sound = ExtResource("11_wqbss")
+game_state = ExtResource("11_gy0qm")
 metadata/_custom_type_script = "uid://cg07bdaai08mp"
 
 [node name="UnitSpawner" type="Node" parent="." node_paths=PackedStringArray("bench", "game_area")]
 script = ExtResource("11_xgbxb")
 bench = NodePath("../Bench")
 game_area = NodePath("../GameArea")
+game_state = ExtResource("11_gy0qm")
 metadata/_custom_type_script = "uid://bmsmmiukuuuh3"
 
 [node name="SceneSpawner" type="Node" parent="UnitSpawner"]
