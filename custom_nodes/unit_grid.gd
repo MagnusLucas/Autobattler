@@ -5,7 +5,7 @@ signal unit_grid_changed
 
 @export var size : Vector2i
 
-var units : Dictionary[Vector2i, Variant]
+var units : Dictionary[Vector2i, Node]
 
 
 func _ready() -> void:
@@ -14,13 +14,13 @@ func _ready() -> void:
 			units[Vector2i(x, y)] = null
 
 
-func add_unit(tile: Vector2i, unit: Variant) -> void:
+func add_unit(tile: Vector2i, unit: Node) -> void:
 	units[tile] = unit
 	unit_grid_changed.emit()
 	unit.tree_exited.connect(_on_unit_tree_exited.bind(unit, tile))
 
 
-func _on_unit_tree_exited(unit: Unit, tile: Vector2i) -> void:
+func _on_unit_tree_exited(unit: Node, tile: Vector2i) -> void:
 	if unit.is_queued_for_deletion():
 		units[tile] = null
 		unit_grid_changed.emit()
