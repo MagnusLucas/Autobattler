@@ -5,7 +5,7 @@ signal unit_grid_changed
 
 @export var size : Vector2i
 
-var units : Dictionary
+var units : Dictionary[Vector2i, Variant]
 
 
 func _ready() -> void:
@@ -14,7 +14,7 @@ func _ready() -> void:
 			units[Vector2i(x, y)] = null
 
 
-func add_unit(tile: Vector2i, unit: Unit) -> void:
+func add_unit(tile: Vector2i, unit: Variant) -> void:
 	units[tile] = unit
 	unit_grid_changed.emit()
 	unit.tree_exited.connect(_on_unit_tree_exited.bind(unit, tile))
@@ -37,6 +37,10 @@ func remove_unit(tile: Vector2i) -> void:
 
 func is_tile_occupied(tile: Vector2i) -> bool:
 	return units[tile] != null
+
+
+func get_all_occupied_tiles() -> Array[Vector2i]:
+	return units.keys().filter(func(tile): return is_tile_occupied(tile))
 
 
 func is_grid_full() -> bool:

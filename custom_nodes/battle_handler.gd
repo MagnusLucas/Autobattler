@@ -4,6 +4,14 @@ extends Node
 signal player_won
 signal enemy_won
 
+const ZOMBIE_TEST_POSITIONS := [
+	Vector2i(8, 6),
+	Vector2i(7, 4),
+	Vector2i(8, 3),
+]
+
+const ZOMBIE = preload("uid://dl84c0o5mnq5d")
+
 @export var game_state: GameState
 @export var game_area: PlayArea
 @export var game_area_unit_grid: UnitGrid
@@ -16,12 +24,34 @@ func _ready() -> void:
 	game_state.changed.connect(_on_game_state_changed)
 
 
+func _setup_battle_unit(unit_coords: Vector2i, unit: BattleUnit) -> void:
+	unit.global_position = game_area.get_global_from_tile(unit_coords)
+	unit.global_position.y -= Arena.QUARTER_CELL_SIZE.y
+	unit.tree_exited.connect(_on_battle_unit_died)
+	battle_unit_grid.add_unit(unit_coords, unit)
+
+
 func _clear_up_fight() -> void:
 	get_tree().call_group("units", "show")
 
 
 func _prepare_fight() -> void:
 	get_tree().call_group("units", "hide")
+	
+	for unit_coord: Vector2i in game_area_unit_grid.get_all_occupied_tiles():
+		var unit: Unit = game_area_unit_grid.units[unit_coord]
+		var new_unit := scene_spawner.spawn_scene(battle_unit_grid) as BattleUnit
+		new_unit.add_to_group("player_units")
+		new_unit.stats = unit.stats.duplicate()
+		new_unit.stats.team = UnitStats.Team.PLAYER
+		_setup_battle_unit(unit_coord, new_unit)
+	
+	for unit_coord: Vector2i in ZOMBIE_TEST_POSITIONS:
+		var new_unit := scene_spawner.spawn_scene(battle_unit_grid) as BattleUnit
+		new_unit.add_to_group("enemy_units")
+		new_unit.stats = ZOMBIE
+		new_unit.stats.team = UnitStats.Team.ENEMY
+		_setup_battle_unit(unit_coord, new_unit)
 
 
 func _on_game_state_changed() -> void:
@@ -30,3 +60,7 @@ func _on_game_state_changed() -> void:
 			_clear_up_fight()
 		GameState.Phase.BATTLE:
 			_prepare_fight()
+
+
+func _on_battle_unit_died() -> void:
+	pass
