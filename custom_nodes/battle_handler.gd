@@ -61,6 +61,15 @@ func _prepare_fight() -> void:
 		new_unit.stats = ZOMBIE
 		new_unit.stats.team = UnitStats.Team.ENEMY
 		_setup_battle_unit(unit_coord, new_unit)
+	
+	for unit in get_tree().get_nodes_in_group("player_units"):
+		set_unit_target_enemy(unit)
+
+
+func set_unit_target_enemy(unit: BattleUnit) -> void:
+	var random_enemy: BattleUnit = get_tree().get_nodes_in_group("enemy_units").pick_random()
+	var next_position := UnitNavigation.get_next_position(unit, random_enemy)
+	unit.create_tween().tween_property(unit, "global_position", next_position, 0.5)
 
 
 func _on_game_state_changed() -> void:
