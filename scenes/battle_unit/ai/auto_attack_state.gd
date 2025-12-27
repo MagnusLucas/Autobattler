@@ -12,4 +12,4 @@ func _init(new_actor: Node, current_target: BattleUnit) -> void:
 
 func enter() -> void:
 	actor_unit = actor as BattleUnit
-	print_debug("%s should perform attacks!", actor_unit.name)
+	print_debug("%s should perform attacks!" % actor_unit.name)
