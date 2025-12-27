@@ -23,13 +23,6 @@ const ZOMBIE = preload("uid://dl84c0o5mnq5d")
 func _ready() -> void:
 	game_state.changed.connect(_on_game_state_changed)
 
-# TEST
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("test2"):
-		get_tree().call_group("player_units", "queue_free")
-	if event.is_action_pressed("test1"):
-		get_tree().call_group("enemy_units", "queue_free")
-
 
 func _setup_battle_unit(unit_coords: Vector2i, unit: BattleUnit) -> void:
 	unit.global_position = game_area.get_global_from_tile(unit_coords)
@@ -61,15 +54,6 @@ func _prepare_fight() -> void:
 		new_unit.stats = ZOMBIE
 		new_unit.stats.team = UnitStats.Team.ENEMY
 		_setup_battle_unit(unit_coord, new_unit)
-	
-	for unit in get_tree().get_nodes_in_group("player_units"):
-		set_unit_target_enemy(unit)
-
-
-func set_unit_target_enemy(unit: BattleUnit) -> void:
-	var random_enemy: BattleUnit = get_tree().get_nodes_in_group("enemy_units").pick_random()
-	var next_position := UnitNavigation.get_next_position(unit, random_enemy)
-	unit.create_tween().tween_property(unit, "global_position", next_position, 0.5)
 
 
 func _on_game_state_changed() -> void:

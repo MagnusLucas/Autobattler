@@ -3,6 +3,8 @@ extends Area2D
 
 @export var stats: UnitStats: set = _set_stats
 
+@onready var unit_ai: UnitAI = $UnitAI
+
 @onready var skin: PackedSprite2D = $Skin
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var mana_bar: ProgressBar = $ManaBar
