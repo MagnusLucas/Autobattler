@@ -9,9 +9,6 @@
 [resource]
 script = ExtResource("1_b6a51")
 name = "Arthur"
-cost = null
-tier = null
-pool_count = null
 traits = Array[ExtResource("2_vyn1g")]([ExtResource("2_0x1t0"), ExtResource("3_vyn1g"), ExtResource("4_g8o77")])
 skin_coordinates = Vector2i(4, 1)
 metadata/_custom_type_script = "uid://cmb38jix5tc65"

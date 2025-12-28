@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://p1c87q01yygn"]
+[gd_scene load_steps=4 format=3 uid="uid://p1c87q01yygn"]
+
+[ext_resource type="Script" uid="uid://dbfgym78xoav8" path="res://scenes/health_bar/health_bar.gd" id="1_qy603"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmv3f"]
 bg_color = Color(0.3227743, 0.049818628, 1.2032688e-08, 1)
@@ -21,3 +23,4 @@ theme_override_styles/background = SubResource("StyleBoxFlat_fmv3f")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fvc8g")
 value = 35.0
 show_percentage = false
+script = ExtResource("1_qy603")

@@ -47,12 +47,12 @@ const MANA_PER_ATTACK := 10
 
 @export_category("Battle")
 @export var team: Team
-@export var max_health: Array[int]
+@export var max_health: Array[int] = [10, 20, 30]
 @export var max_mana: int
 @export var starting_mana: int
-@export var attack_damage: Array[int]
+@export var attack_damage: Array[int] = [2, 3, 4]
 @export var ability_power: int
-@export var attack_speed: float
+@export var attack_speed: float = 1.0
 @export var armor: int
 @export var magic_resist: int
 @export_range(1, MAX_ATTACK_RANGE) var attack_range: int

@@ -30,6 +30,6 @@ func spawn_unit(unit_stats: UnitStats) -> void:
 	var unit: Unit = scene_spawner.spawn_scene(area.unit_grid)
 	var tile: Vector2i = area.unit_grid.get_first_empty_tile()
 	area.unit_grid.add_unit(tile, unit)
-	unit.set_stats(unit_stats)
+	unit.stats = unit_stats
 	unit.global_position = area.get_global_from_tile(tile) - Arena.HALF_CELL_SIZE
 	unit_spawned.emit(unit)

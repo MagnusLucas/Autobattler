@@ -1,14 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://bak8ahclwcng0"]
+[gd_scene load_steps=16 format=3 uid="uid://bak8ahclwcng0"]
 
 [ext_resource type="Script" uid="uid://dwfif6j3o3f3y" path="res://scenes/battle_unit/battle_unit.gd" id="1_rmpo8"]
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_tah2m"]
 [ext_resource type="Script" uid="uid://bhyxscii8bf6v" path="res://components/packed_sprite_2d.gd" id="2_rmpo8"]
 [ext_resource type="PackedScene" uid="uid://p1c87q01yygn" path="res://scenes/health_bar/health_bar.tscn" id="3_4s270"]
+[ext_resource type="Script" uid="uid://dgxbs653tes7w" path="res://components/hurtbox.gd" id="4_hf5vq"]
 [ext_resource type="PackedScene" uid="uid://buxwlnacw0d0p" path="res://scenes/mana_bar/mana_bar.tscn" id="4_u0yfu"]
 [ext_resource type="PackedScene" uid="uid://caw8vncdf2w4j" path="res://scenes/tier_icon/tier_icon.tscn" id="5_hf5vq"]
 [ext_resource type="Script" uid="uid://chmwcld4fmsms" path="res://scenes/battle_unit/ai/unit_ai.gd" id="8_u0yfu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1myfu"]
+size = Vector2(36, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmiut"]
 size = Vector2(36, 36)
 
 [sub_resource type="Animation" id="Animation_rmpo8"]
@@ -171,6 +175,8 @@ _data = {
 }
 
 [node name="BattleUnit" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_rmpo8")
 metadata/_edit_group_ = true
 
@@ -183,6 +189,14 @@ metadata/_custom_type_script = "uid://bhyxscii8bf6v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1myfu")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("4_hf5vq")
+metadata/_custom_type_script = "uid://dgxbs653tes7w"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_nmiut")
+debug_color = Color(0.93919015, 1.49205325e-05, 0.62260175, 0.41960785)
 
 [node name="HealthBar" parent="." instance=ExtResource("3_4s270")]
 offset_left = -16.0
