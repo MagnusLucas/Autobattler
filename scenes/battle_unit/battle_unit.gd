@@ -11,6 +11,7 @@ extends Area2D
 @onready var tier_icon: TierIcon = $TierIcon
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hurt_box: HurtBox = $HurtBox
+@onready var detect_range: DetectRange = $DetectRange
 
 
 func _ready() -> void:
@@ -39,4 +40,5 @@ func _set_stats(value: UnitStats) -> void:
 	tier_icon.unit_stats = stats
 	health_bar.stats = stats
 	mana_bar.stats = stats
+	detect_range.stats = stats
 	stats.health_reached_zero.connect(queue_free)
