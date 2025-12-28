@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bak8ahclwcng0"]
+[gd_scene load_steps=14 format=3 uid="uid://bak8ahclwcng0"]
 
 [ext_resource type="Script" uid="uid://dwfif6j3o3f3y" path="res://scenes/battle_unit/battle_unit.gd" id="1_rmpo8"]
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_tah2m"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://p1c87q01yygn" path="res://scenes/health_bar/health_bar.tscn" id="3_4s270"]
 [ext_resource type="PackedScene" uid="uid://buxwlnacw0d0p" path="res://scenes/mana_bar/mana_bar.tscn" id="4_u0yfu"]
 [ext_resource type="PackedScene" uid="uid://caw8vncdf2w4j" path="res://scenes/tier_icon/tier_icon.tscn" id="5_hf5vq"]
-[ext_resource type="Script" uid="uid://4hbe0poa17ir" path="res://components/finite_state_machine.gd" id="7_4s270"]
 [ext_resource type="Script" uid="uid://chmwcld4fmsms" path="res://scenes/battle_unit/ai/unit_ai.gd" id="8_u0yfu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1myfu"]
@@ -214,15 +213,10 @@ offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("debug_label")]
-script = ExtResource("7_4s270")
-debug_label = NodePath("../FSMDebugLabel")
-metadata/_custom_type_script = "uid://4hbe0poa17ir"
-
-[node name="UnitAI" type="Node" parent="." node_paths=PackedStringArray("actor", "fsm")]
+[node name="UnitAI" type="Node" parent="." node_paths=PackedStringArray("actor", "fsm_debug_label")]
 script = ExtResource("8_u0yfu")
 actor = NodePath("..")
-fsm = NodePath("../FiniteStateMachine")
+fsm_debug_label = NodePath("../FSMDebugLabel")
 metadata/_custom_type_script = "uid://chmwcld4fmsms"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

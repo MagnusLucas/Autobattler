@@ -3,7 +3,19 @@ extends Node
 
 @export var enabled: bool: set = set_enabled
 @export var actor: BattleUnit
-@export var fsm: FiniteStateMachine
+@export var fsm_debug_label: Label
+
+var fsm: FiniteStateMachine
+
+
+func _ready() -> void:
+	fsm = FiniteStateMachine.new()
+	fsm.state_changed.connect(
+		func(new_state: State):
+			if not fsm_debug_label:
+				return
+			fsm_debug_label.text = new_state.get_script().get_global_name()
+	)
 
 
 func set_enabled(value: bool) -> void:
