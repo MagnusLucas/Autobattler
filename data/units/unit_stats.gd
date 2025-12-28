@@ -60,21 +60,13 @@ const MANA_PER_ATTACK := 10
 var health: int: set = _set_health
 var mana: int: set = _set_mana
 
-func _set_tier(value: int) -> void:
-	tier = value
-	emit_changed()
+
+func reset_health() -> void:
+	health = get_max_health()
 
 
-func _set_health(value: int) -> void:
-	health = value
-
-
-func _set_mana(value: int) -> void:
-	mana = value
-
-
-func _to_string() -> String:
-	return name
+func reset_mana() -> void:
+	mana = starting_mana
 
 
 func get_combined_unit_count() -> int:
@@ -83,3 +75,43 @@ func get_combined_unit_count() -> int:
 
 func get_gold_value() -> int:
 	return get_combined_unit_count() * cost
+
+
+func get_max_health() -> int:
+	return max_health[tier - 1]
+
+
+func get_attack_damage() -> int:
+	return attack_damage[tier - 1]
+
+
+func get_time_between_attacks() -> float:
+	return 1 / attack_speed
+
+
+func is_melee() -> bool:
+	return attack_range == 1
+
+
+func _set_tier(value: int) -> void:
+	tier = value
+	emit_changed()
+
+
+func _set_health(value: int) -> void:
+	health = value
+	emit_changed()
+	
+	if health <= 0:
+		health_reached_zero.emit()
+
+
+func _set_mana(value: int) -> void:
+	mana = value
+	emit_changed()
+	
+	if mana >= max_mana and max_mana > 0:
+		mana_bar_filled.emit()
+
+func _to_string() -> String:
+	return name
