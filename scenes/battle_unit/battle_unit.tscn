@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bak8ahclwcng0"]
+[gd_scene load_steps=19 format=3 uid="uid://bak8ahclwcng0"]
 
 [ext_resource type="Script" uid="uid://dwfif6j3o3f3y" path="res://scenes/battle_unit/battle_unit.gd" id="1_rmpo8"]
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_tah2m"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://buxwlnacw0d0p" path="res://scenes/mana_bar/mana_bar.tscn" id="4_u0yfu"]
 [ext_resource type="PackedScene" uid="uid://caw8vncdf2w4j" path="res://scenes/tier_icon/tier_icon.tscn" id="5_hf5vq"]
 [ext_resource type="Script" uid="uid://chmwcld4fmsms" path="res://scenes/battle_unit/ai/unit_ai.gd" id="8_u0yfu"]
+[ext_resource type="Script" uid="uid://ycis0bwofaj4" path="res://custom_nodes/target_finder.gd" id="10_1myfu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1myfu"]
 size = Vector2(36, 36)
@@ -239,6 +240,11 @@ offset_right = 58.5
 offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="TargetFinder" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("10_1myfu")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://ycis0bwofaj4"
 
 [node name="UnitAI" type="Node" parent="." node_paths=PackedStringArray("actor", "fsm_debug_label")]
 script = ExtResource("8_u0yfu")

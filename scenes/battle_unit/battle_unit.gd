@@ -6,12 +6,13 @@ extends Area2D
 @onready var unit_ai: UnitAI = $UnitAI
 
 @onready var skin: PackedSprite2D = $Skin
+@onready var detect_range: DetectRange = $DetectRange
+@onready var hurt_box: HurtBox = $HurtBox
 @onready var health_bar: HealthBar = $HealthBar
 @onready var mana_bar: ManaBar = $ManaBar
 @onready var tier_icon: TierIcon = $TierIcon
+@onready var target_finder: TargetFinder = $TargetFinder
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var hurt_box: HurtBox = $HurtBox
-@onready var detect_range: DetectRange = $DetectRange
 
 
 func _ready() -> void:
