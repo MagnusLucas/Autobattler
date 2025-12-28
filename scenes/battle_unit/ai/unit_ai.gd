@@ -1,7 +1,7 @@
 class_name UnitAI
 extends Node
 
-@export var enabled: bool: set = set_enabled
+@export var enabled: bool: set = _set_enabled
 @export var actor: BattleUnit
 @export var fsm_debug_label: Label
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 	)
 
 
-func set_enabled(value: bool) -> void:
+func _set_enabled(value: bool) -> void:
 	enabled = value
 	
 	if enabled:

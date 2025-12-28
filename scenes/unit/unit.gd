@@ -5,7 +5,7 @@ extends Area2D
 
 signal quicksell_pressed
 
-@export var stats: UnitStats : set = set_stats
+@export var stats: UnitStats : set = _set_stats
 
 @onready var skin: PackedSprite2D = $Visuals/Skin
 @onready var health_bar: ProgressBar = $HealthBar
@@ -29,7 +29,7 @@ func _ready() -> void:
 		outline_highlighter.got_enabled.connect(_on_outline_highlighter_enabled)
 
 
-func set_stats(value: UnitStats) -> void:
+func _set_stats(value: UnitStats) -> void:
 	stats = value
 	
 	if not is_node_ready() or stats == null:
