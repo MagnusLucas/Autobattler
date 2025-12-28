@@ -28,6 +28,7 @@ func _set_stats(value: UnitStats) -> void:
 		return
 	
 	stats = stats.duplicate()
+	stats.reset_health()
 	collision_layer = stats.team + 1
 	hurt_box.collision_layer = stats.team + 1
 	hurt_box.collision_mask = 2 - stats.team

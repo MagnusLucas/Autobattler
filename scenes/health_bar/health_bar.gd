@@ -12,4 +12,4 @@ func _set_stats(unit_stats: UnitStats) -> void:
 
 
 func _on_stats_changed() -> void:
-	value = 100.0 * stats.health / stats.get_max_health()
+	value = stats.health * 100.0 / stats.get_max_health()
