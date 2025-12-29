@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bak8ahclwcng0"]
+[gd_scene load_steps=22 format=3 uid="uid://bak8ahclwcng0"]
 
 [ext_resource type="Script" uid="uid://dwfif6j3o3f3y" path="res://scenes/battle_unit/battle_unit.gd" id="1_rmpo8"]
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_tah2m"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://chmwcld4fmsms" path="res://scenes/battle_unit/ai/unit_ai.gd" id="8_u0yfu"]
 [ext_resource type="Script" uid="uid://ycis0bwofaj4" path="res://custom_nodes/target_finder.gd" id="10_1myfu"]
 [ext_resource type="Script" uid="uid://cs8onagbccevb" path="res://components/flip_sprite.gd" id="11_nmiut"]
+[ext_resource type="Script" uid="uid://bwkutu26yduuc" path="res://components/attack.gd" id="12_gou7k"]
+[ext_resource type="Script" uid="uid://7y5rlbikuu2c" path="res://components/scene_spawner.gd" id="13_4i2cr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1myfu"]
 size = Vector2(36, 36)
@@ -213,6 +215,11 @@ metadata/_custom_type_script = "uid://dgxbs653tes7w"
 shape = SubResource("RectangleShape2D_nmiut")
 debug_color = Color(0.93919015, 1.49205325e-05, 0.62260175, 0.41960785)
 
+[node name="AttackAnchor" type="Node2D" parent="."]
+
+[node name="AttackMarker" type="Marker2D" parent="AttackAnchor"]
+position = Vector2(20, 0)
+
 [node name="HealthBar" parent="." instance=ExtResource("3_4s270")]
 offset_left = -16.0
 offset_right = 14.0
@@ -257,6 +264,18 @@ metadata/_custom_type_script = "uid://chmwcld4fmsms"
 script = ExtResource("11_nmiut")
 sprite = NodePath("../Skin")
 metadata/_custom_type_script = "uid://cs8onagbccevb"
+
+[node name="MeleeAttack" type="Node" parent="." node_paths=PackedStringArray("parent", "anchor", "spawn_point", "spawner")]
+script = ExtResource("12_gou7k")
+parent = NodePath("..")
+anchor = NodePath("../AttackAnchor")
+spawn_point = NodePath("../AttackAnchor/AttackMarker")
+spawner = NodePath("MeleeAttackSpawner")
+metadata/_custom_type_script = "uid://bwkutu26yduuc"
+
+[node name="MeleeAttackSpawner" type="Node" parent="MeleeAttack"]
+script = ExtResource("13_4i2cr")
+metadata/_custom_type_script = "uid://7y5rlbikuu2c"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

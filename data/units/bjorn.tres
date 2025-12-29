@@ -1,10 +1,24 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=6 format=3 uid="uid://brqc13fimo50j"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=12 format=3 uid="uid://brqc13fimo50j"]
 
 [ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_d6p4t"]
+[ext_resource type="AudioStream" uid="uid://b78nhn10ll61u" path="res://assets/sfx/bjorn_1.ogg" id="1_y5alr"]
 [ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="2_f8bbe"]
 [ext_resource type="Resource" uid="uid://c0tqsvxc1a5nm" path="res://data/traits/viking.tres" id="2_shr7q"]
+[ext_resource type="AudioStream" uid="uid://c4b708rlsvqj1" path="res://assets/sfx/bjorn_2.ogg" id="2_v1jki"]
+[ext_resource type="AudioStream" uid="uid://bb1nwbhteu3bc" path="res://assets/sfx/bjorn_3.ogg" id="3_6ud85"]
 [ext_resource type="Resource" uid="uid://cp2jkaqn1v2v6" path="res://data/traits/human.tres" id="3_f8bbe"]
+[ext_resource type="AudioStream" uid="uid://uwxs3ydsei36" path="res://assets/sfx/bjorn_4.ogg" id="4_66cgf"]
 [ext_resource type="Resource" uid="uid://b0lplxoyyscm1" path="res://data/traits/fighter.tres" id="4_vqcxw"]
+[ext_resource type="PackedScene" uid="uid://cub2sg6rvnhuw" path="res://scenes/_effects/attack_smear_effect.tscn" id="5_bk82h"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_24y5f"]
+playback_mode = 1
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("1_y5alr")
+stream_1/stream = ExtResource("2_v1jki")
+stream_2/stream = ExtResource("3_6ud85")
+stream_3/stream = ExtResource("4_66cgf")
 
 [resource]
 script = ExtResource("1_d6p4t")
@@ -18,4 +32,5 @@ max_mana = 50
 starting_mana = 15
 attack_damage = Array[int]([2, 5, 8])
 attack_speed = 0.75
+auto_attack_sound = SubResource("AudioStreamRandomizer_24y5f")
 metadata/_custom_type_script = "uid://cmb38jix5tc65"
