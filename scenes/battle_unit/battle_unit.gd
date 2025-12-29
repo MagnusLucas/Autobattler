@@ -12,6 +12,7 @@ extends Area2D
 @onready var mana_bar: ManaBar = $ManaBar
 @onready var tier_icon: TierIcon = $TierIcon
 @onready var target_finder: TargetFinder = $TargetFinder
+@onready var flip_sprite: FlipSprite = $FlipSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 

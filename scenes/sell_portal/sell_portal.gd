@@ -5,17 +5,24 @@ extends Area2D
 @export var unit_pool: UnitPool
 @export var sell_sound: AudioStream
 
+var current_unit: Unit
+
 @onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
 @onready var gold: HBoxContainer = %Gold
 @onready var gold_label: Label = %GoldLabel
-
-var current_unit: Unit
+@onready var flip_sprite: FlipSprite = $FlipSprite
 
 
 func _ready() -> void:
 	var units := get_tree().get_nodes_in_group("units")
 	for unit in units:
 		setup_unit(unit)
+
+
+func _process(_delta: float) -> void:
+	if not current_unit:
+		return
+	flip_sprite.flip_sprite_towards(current_unit.global_position)
 
 
 func setup_unit(unit: Unit) -> void:
