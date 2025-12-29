@@ -69,7 +69,7 @@ func _on_game_state_changed() -> void:
 func _on_battle_unit_died() -> void:
 	# Either the unit died
 	# or the game is being closed
-	if not get_tree() or game_state.current_phase != GameState.Phase.BATTLE:
+	if not get_tree() or not game_state.is_battling():
 		return
 	
 	if get_tree().get_node_count_in_group("player_units") == 0:

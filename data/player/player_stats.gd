@@ -61,7 +61,7 @@ const ROLL_CHANCES := {
 
 @export_range(0, 99) var gold: int : set = _set_gold
 @export_range(0, 99) var xp: int : set = _set_xp
-@export_range(1, 10) var level := 1 : set = _set_level
+@export_range(1, MAX_LEVEL) var level := 1 : set = _set_level
 
 
 func get_random_rarity_for_level() -> UnitStats.Rarity:
@@ -80,6 +80,10 @@ func get_current_max_units() -> int:
 	return MAX_UNITS[level]
 
 
+func is_max_level() -> bool:
+	return level == MAX_LEVEL
+
+
 func _set_gold(value: int) -> void:
 	gold = value
 	emit_changed()
@@ -89,11 +93,11 @@ func _set_xp(value: int) -> void:
 	xp = value
 	emit_changed()
 	
-	if level == MAX_LEVEL:
+	if is_max_level():
 		return
 	
 	var xp_requirement := get_current_xp_requirement()
-	while level < MAX_LEVEL and xp >= xp_requirement:
+	while not is_max_level() and xp >= xp_requirement:
 		xp -= xp_requirement
 		xp_requirement = get_current_xp_requirement()
 		level += 1

@@ -49,9 +49,8 @@ func _on_unit_dropped(starting_position: Vector2, unit: Unit) -> void:
 	
 	var invalid_drop := play_area == null
 	var drop_on_bench := play_area.name == "Bench" if play_area else false
-	var is_battling := game_state.current_phase == GameState.Phase.BATTLE
 	
-	if invalid_drop or (is_battling and not drop_on_bench):
+	if invalid_drop or (game_state.is_battling() and not drop_on_bench):
 		_reset_unit_to_starting_posiiton(starting_position, unit)
 		return
 	var tile := play_area.get_hovered_tile()

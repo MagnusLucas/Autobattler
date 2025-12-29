@@ -26,6 +26,6 @@ func _update() -> void:
 
 
 func _on_pressed() -> void:
-	if game_state.current_phase != GameState.Phase.PREPARATION:
+	if game_state.is_battling():
 		return
 	game_state.current_phase = GameState.Phase.BATTLE

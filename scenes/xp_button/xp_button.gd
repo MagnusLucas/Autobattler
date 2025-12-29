@@ -17,10 +17,9 @@ func _ready() -> void:
 
 func _on_player_stats_changed() -> void:
 	var can_afford := player_stats.gold >= COST
-	var is_max_lvl := player_stats.level == player_stats.MAX_LEVEL
-	disabled = not can_afford or is_max_lvl
+	disabled = not can_afford or player_stats.is_max_level()
 	
-	if can_afford and not is_max_lvl:
+	if can_afford and not player_stats.is_max_level():
 		v_box_container.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	else:
 		v_box_container.modulate = Color(1.0, 1.0, 1.0, 0.5)
