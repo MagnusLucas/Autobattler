@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://dl84c0o5mnq5d"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=4 format=3 uid="uid://dl84c0o5mnq5d"]
 
 [ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_bncb8"]
+[ext_resource type="PackedScene" uid="uid://cub2sg6rvnhuw" path="res://scenes/_effects/attack_smear_effect.tscn" id="1_m70pa"]
 [ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="2_m70pa"]
 
 [resource]
@@ -10,4 +11,5 @@ team = 1
 max_health = Array[int]([18, 22, 25])
 attack_damage = Array[int]([2, 4, 6])
 attack_speed = 0.7
+attack_range = 1
 metadata/_custom_type_script = "uid://cmb38jix5tc65"

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=6 format=3 uid="uid://d262gf1vfa7rj"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=7 format=3 uid="uid://d262gf1vfa7rj"]
 
 [ext_resource type="Script" uid="uid://cmb38jix5tc65" path="res://data/units/unit_stats.gd" id="1_b6a51"]
+[ext_resource type="PackedScene" uid="uid://cub2sg6rvnhuw" path="res://scenes/_effects/attack_smear_effect.tscn" id="1_g8o77"]
 [ext_resource type="Resource" uid="uid://dkjfj3kg7uuhu" path="res://data/traits/noble.tres" id="2_0x1t0"]
 [ext_resource type="Script" uid="uid://bj36yk3m4758g" path="res://data/traits/trait.gd" id="2_vyn1g"]
 [ext_resource type="Resource" uid="uid://b0lplxoyyscm1" path="res://data/traits/fighter.tres" id="3_vyn1g"]
@@ -11,4 +12,5 @@ script = ExtResource("1_b6a51")
 name = "Arthur"
 traits = Array[ExtResource("2_vyn1g")]([ExtResource("2_0x1t0"), ExtResource("3_vyn1g"), ExtResource("4_g8o77")])
 skin_coordinates = Vector2i(4, 1)
+attack_range = 1
 metadata/_custom_type_script = "uid://cmb38jix5tc65"

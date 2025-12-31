@@ -32,5 +32,6 @@ max_mana = 50
 starting_mana = 15
 attack_damage = Array[int]([2, 5, 8])
 attack_speed = 0.75
+attack_range = 1
 auto_attack_sound = SubResource("AudioStreamRandomizer_24y5f")
 metadata/_custom_type_script = "uid://cmb38jix5tc65"
