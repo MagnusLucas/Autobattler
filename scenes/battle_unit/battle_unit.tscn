@@ -249,6 +249,9 @@ offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="AttackTimer" type="Timer" parent="."]
+process_callback = 0
+
 [node name="TargetFinder" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("10_1myfu")
 actor = NodePath("..")

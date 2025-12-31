@@ -11,6 +11,7 @@ extends Area2D
 @onready var health_bar: HealthBar = $HealthBar
 @onready var mana_bar: ManaBar = $ManaBar
 @onready var tier_icon: TierIcon = $TierIcon
+@onready var attack_timer: Timer = $AttackTimer
 @onready var target_finder: TargetFinder = $TargetFinder
 @onready var flip_sprite: FlipSprite = $FlipSprite
 @onready var melee_attack: Attack = $MeleeAttack

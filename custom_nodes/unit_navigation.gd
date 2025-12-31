@@ -38,7 +38,7 @@ func get_next_position(unit: BattleUnit, target: BattleUnit) -> Vector2:
 	# There's no tile to move to
 	if path.size() <= 1:
 		astar_grid.set_point_solid(unit_tile)
-		return unit.global_position
+		return Vector2(-1, -1)
 	
 	# Handle movement
 	var next_cell := path[1]
